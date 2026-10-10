@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Catalogo de juegos</title>
+    <link href="/styles.css" rel="stylesheet" >
+</head>
+<body>
+    <h1>Catalogo videojuegos</h1>
+
+    <table>
+        <thead>
+        <tr>
+            <th>titulo</th>
+            <th>Genero</th>
+            <th>Plataforma</th>
+            <th>Precio</th>
+            <th>Disponibilidad</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr th:each="juego: ${juegos}">
+                <td th:text="${juego.titulo}"></td>
+                <td th:text="${juego.genero}"></td>
+                <td th:text="${juego.plataforma}"></td>
+                <td th:text="${juego.precio}"></td>
+                <td>
+                    <span th:if="${juego.disponibilidad}" class="disponible">En stock</span>
+                    <span th:unless="${juego.disponibilidad}" class="agotado">Agotado</span>
+                </td>
+            </tr>
+
+            <tr th:if="${#lists.isEmpty(juegos)}">
+                <td colspan="5">No hay juegos disponibles en el catalogo en este momento</td>
+            </tr>
+
+        </tbody>
+    </table>
+
+    <div>
+        <a th:href="@{/}">Volver al inicio</a>
+    </div>
+
+</body>
+</html>

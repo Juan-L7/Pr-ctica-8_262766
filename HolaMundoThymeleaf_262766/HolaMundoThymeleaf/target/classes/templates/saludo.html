@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Saludo dinámico</title>
+    <link th:href="@{/styles.css}" rel="stylesheet">
+</head>
+<body>
+
+    <h1>Mensaje del sistema:</h1>
+    <h2 th:text="${saludo}" th:style="${claseCss}">Saludo default</h2>
+
+    <hr>
+
+    <h3>Objetos implícitos y utilidades en Thymeleaf</h3>
+    <ul>
+        <li>
+            <strong>1. Sesión: </strong>Obteniendo datos guardados de la sesión:
+            <span th:text="${session.operador}">Operador</span>
+        </li>
+        <li>
+            <strong>2. Param: </strong>Leyendo parámetros de la URL:
+            <br>
+            Nombre extraído de la URL:
+            <span th:text="${param.nombre != null ? param.nombre : 'Ninguno'}">N/A</span>
+            <br>
+            <span th:if="${param.error}">Se detectó un error de acceso</span>
+        </li>
+        <li>
+            <strong>3. Utilities (#dates): </strong>Manipulando fechas:
+            <br>
+            Fecha actual formateada:
+            <span th:text="${#dates.format(#dates.createNow(), 'dd/MM/yyyy')}">01/01/2026</span>
+        </li>
+    </ul>
+
+    <br>
+    <a th:href="@{/}">Volver al inicio</a>
+
+</body>
+</html>
